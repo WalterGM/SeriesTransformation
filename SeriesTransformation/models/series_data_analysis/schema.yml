@@ -1,0 +1,87 @@
+
+version: 2
+
+models:
+  - name: staging_seriesinfo_view
+    description: "SeriesInfo view"
+    columns:
+      - name: series_id
+        description: "Unique identifier of series"
+        tests:
+          - not_null
+      - name: supersector_code
+        description: "supersector ID"
+      - name: industry_code
+        description: "Industry code ID"
+      - name: seasonal
+        description: "seasonal"
+      - name: series_title
+        description: "Title of Series"
+      - name: data_type_code
+        description: "Data type ID"
+      - name: footnote_codes
+        description: "Footnote codes for each series"
+      - name: begin_year
+        description: "Begin year of the series"
+      - name: begin_period
+        description: "Begin period of the series"
+      - name: end_year
+        description: "End year of the series"
+      - name: end_period
+        description: "End period of the series"
+
+  - name: staging_supersector_view
+    description: "Supersector view"
+    columns:
+      - name: supersector_code
+        description: "supersector ID"
+        tests:
+          - not_null
+      - name: supersector_name
+        description: "supersector name"
+
+  - name: staging_datatype_view
+    description: "Datatype view"
+    columns:
+      - name: data_type_code
+        description: "datatype ID"
+        tests:
+          - not_null
+      - name: data_type_text
+        description: "datatype name"
+
+  - name: final_series_data_table
+    description: "Series main table"
+    columns:
+      - name: series_id
+        description: "Series id"
+        tests:
+          - not_null
+      - name: supersector_info
+        description: "supersector table"
+      - name: datatype_info
+        description: "datatype  info table"
+      - name: series_info
+        description: "SeriesInfo table"
+      - name: value
+        description: "Value field"
+      - name: period
+        description: "Period time"
+      - name: year
+        description: "Year"
+
+  - name: final_comparison_view
+    description: "View with women and men employees comparison"
+    columns:
+      - name: supersector_name
+        description: "supersector name of each series"
+      - name: women_employees
+        description: "Count of women employees"
+      - name: men_employees
+        description: "Count of men employees"
+      - name: year
+        description: "Year of the series"
+      - name: month
+        description: "Month of the series"
+      - name: quarter
+        description: "Quarter of the series"
